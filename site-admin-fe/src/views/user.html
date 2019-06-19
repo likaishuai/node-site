@@ -1,0 +1,66 @@
+ <!-- Menu Toggle Button -->
+ <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="user">
+        <!-- The user image in the navbar-->
+        {{#if isSign}}
+        <img src="public/img/user.jpg" class="user-image" alt="User Image">
+        <span class="hidden-xs" id="user-signIn">你好，XXX</span>
+        {{else}}
+        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+        <span class="hidden-xs" id="user-signIn">登录</span> / 
+        <span class="hidden-xs" id="user-signUp">注册</span>
+        {{/if}}
+      </a>
+      <ul class="dropdown-menu">
+        <!-- The user image in the menu -->
+        {{#if isSign}}
+        <li class="user-header">
+          <img src="public/img/user.jpg" class="img-circle" alt="User Image">
+          <p>
+            欢迎您回来，XXX
+            <small>云上之悠然，崖边之谨慎</small>
+          </p>
+        </li>
+        {{else}}
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">输入信息</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="box-body">
+              <div class="form-group">
+                <label for="username">userName</label>
+                <input type="text" class="form-control" id="username" name ="username" placeholder="请输入用户名...">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name = "password" placeholder="请输入密码...">
+              </div>
+              
+            </div>
+            <!-- /.box-body -->
+          </form>
+        </div>
+        {{/if}}
+        <!-- Menu Footer-->
+        {{#if isSign}}
+        <li class="user-footer">
+          <div class="pull-left">
+            <a href="#" class="btn btn-danger btn-flat" id="signOut">注销</a>
+          </div>
+          <div class="pull-right">
+            <a href="javascript:void(0)" class="btn btn-default btn-flat">关闭</a>
+          </div>
+        </li>
+        {{else }}
+        <li class="user-footer">
+          <div class="pull-left">
+            <a href="#" class="btn  btn-primary btn-flat" id="confirm">提交</a>
+          </div>
+          <div class="pull-right">
+            <a href="javascript:void(0)" class="btn btn-default btn-flat">取消</a>
+          </div>
+        </li>
+        {{/if}}
+      </ul>

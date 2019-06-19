@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe E:\node\node_global\node_modules\yarn\bin\yarn.js add express-generator -g
+
+PATH: 
+  E:\Git\mingw64\bin;E:\Git\usr\bin;C:\Users\Kai_Shuai\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;E:\apache-tomcat-8.5.38\bin;E:\apache-tomcat-8.5.38\lib;E:\JDK1.8\bin;E:\JDK1.8\lib;E:\Git\cmd;E:\nginx-1.16.0;D:\MongoDB\bin;E:\putty0.71;C:\Program Files\nodejs;E:\node\node_global;E:\node\node_global\bin;C:\Users\Kai_Shuai\AppData\Local\Microsoft\WindowsApps;E:\Microsoft VS Code\bin;C:\Users\Kai_Shuai\AppData\Roaming\npm
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  10.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.26.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1106:14)
+
+npm manifest: 
+  {
+    "name": "site-admin-be",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {},
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
