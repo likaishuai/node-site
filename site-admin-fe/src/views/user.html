@@ -3,7 +3,7 @@
         <!-- The user image in the navbar-->
         {{#if isSign}}
         <img src="public/img/user.jpg" class="user-image" alt="User Image">
-        <span class="hidden-xs" id="user-signIn">你好，XXX</span>
+        <span class="hidden-xs" id="user-signIn">你好，{{username}}</span>
         {{else}}
         <!-- hidden-xs hides the username on small devices so only the image appears. -->
         <span class="hidden-xs" id="user-signIn">登录</span> / 

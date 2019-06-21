@@ -1,0 +1,17 @@
+{{#if isSign}}
+<div class="pull-left image">
+    <img src="public/img/user.jpg" class="img-circle" alt="User Image">
+  </div>
+   <div class="pull-left info">
+    <p>欢迎你，{{username}}</p>
+    
+    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+  </div> 
+  {{else}}
+  <div class="pull-left image">
+    <img  class="img-circle" >
+  </div>
+   <div class="pull-left info">
+    <p>请先登录</p>
+  </div>
+  {{/if}}
