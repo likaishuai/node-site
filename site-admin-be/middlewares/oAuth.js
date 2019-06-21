@@ -3,19 +3,28 @@ const fs = require('fs')
 const path = require('path')
 
 const oAuth = ( req, res, next)=>{
+    res.set('Content-Type','application/json;charset=utf8')
     let token = req.header('X-Access-Token')
-    let cert = fs.readFileSync(path.resolve(__direname,'../keys/private.key'))
-    
+
+    let cert = fs.readFileSync( path.resolve(__dirname,'../keys/rsa_public_key.pem'),"utf-8")
+    console.log(cert)
     jwt.verify( token, cert, (err,decoded)=>{
-        if(!err){
+        if(err){
+            res.render('fail',{
+                data:JSON.stringify({
+                    isSign: false
+                })
+            })
+        } else {
+            next()
             res.render('succ',{
                 data:JSON.stringify({
-                    message:"成功"
+                    username:decoded.username,
+                    isSign: true
                 })
             })
         }
     })
-
 
 }
 

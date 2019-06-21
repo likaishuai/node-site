@@ -23,23 +23,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
  //cookie-session
-app.set('trust proxy', 1) // trust first proxy
+// app.set('trust proxy', 1) // trust first proxy
  
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2']
-}))
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['key1', 'key2']
+// }))
  
-app.use(function (req, res, next) {
-  var n = req.session.views || 0
-  req.session.views = n++
-  res.end(n + ' views')
-})
+// app.use(function (req, res, next) {
+//   var n = req.session.views || 0
+//   req.session.views = n++
+//   res.end(n + ' views')
+// })
  
-
+// app.use(cookieSession({
+//   name: 'session',
+//   secret: 'user signin',
+//   maxAge: 24 * 60 * 60 * 1000 // 24 hours
+// }))
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
