@@ -6,6 +6,7 @@ export default function() {
             'X-Access-Token': localStorage.getItem('token') || ''
         },
         dataType:'json',
+        
         success:( result)=>{
             return result.data
         },

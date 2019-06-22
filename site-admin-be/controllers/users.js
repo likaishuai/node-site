@@ -78,8 +78,8 @@ class UserController {
         } else{
             let result = await userController.comparePassword(req.body.password,user["password"])
            if( result){
-               console.log(result)
-                 res.header('X-Access-Token', userController.genToken(user["username"]))
+            //    console.log(result)
+                res.header('X-Access-Token', userController.genToken(user["username"]))
                 res.render("succ",{
                     data: JSON.stringify({
                         username: user['username'],
