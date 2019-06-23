@@ -15,8 +15,8 @@ class FileUpload{
         }
     }
 
-    uploadFile(res, req, next){
-        let filename = ''
+    uploadFile(req, res, next){
+        let fileName = ''
         let storage = multer.diskStorage({
             //文件存储位置
             destination: (req, file, cb) =>{
@@ -26,15 +26,15 @@ class FileUpload{
             filename: (req, file, cb) =>{
                 let fileOriName = file.originalname
                 let lastDotIndex = fileOriName.lastIndexOf('.')
-                let extFilename = fileOruName.slice(lastDotIndex)
+                let extFilename = fileOriName.slice(lastDotIndex)
 
                 let rs = randomString({
                     length: 10,
                     lowerCase: true
                 })
 
-               filename = rs + extFilename
-                cb(null,filename)
+               fileName = rs + extFilename
+                cb(null,fileName)
             }
         })
 

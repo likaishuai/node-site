@@ -7,5 +7,5 @@ const isSign = require('../middlewares/isSignMiddleware')
 router.route('/')
     .all(isSign)
     .get(productController.findAll)
-    .post(productController.save)
+    .post(fileUpload.uploadFile, productController.save)
 module.exports = router

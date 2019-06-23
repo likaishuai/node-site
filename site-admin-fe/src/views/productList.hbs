@@ -1,7 +1,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">商品管理</h3>
-        <span class="btn pull-right btn-success btn-sm"><i class="fa fa-fw fa-plus-square"></i>添加</span>
+        <span id="btn-add-product" class="btn pull-right btn-success btn-sm"><i class="fa fa-fw fa-plus-square"></i>添加</span>
     </div>
     <!-- /.box-header -->
     <div class="box-body no-padding">
@@ -16,32 +16,28 @@
                     <th>商品库存</th>
                     <th style="width: 100px">操 作</th>
                 </tr>
+                 {{#if hasData}}
+                 {{#each data}} 
                 <tr>
-                    <td>1</td>
+                    <td>{{@index}}</td>
                     <td><img height="50px" width="50px"
-                            src="https://shop.canon.com.cn/image/catalog/EOS RP/24-105111.jpg" alt=""></td>
-                    <td>OS RP 套机RF24-105mm F4 L IS USM</td>
-                    <td>相机</td>
-                    <td>17537</td>
-                    <td>10005</td>
+                            src="http://localhost:3000/upload/{{productImg}}" alt=""></td>
+                    <td>{{productName}}</td>
+                    <td>{{productType}}</td>
+                    <td>{{productPrice}}</td>
+                    <td>{{productNumber}}</td>
                     <td>
                         <span class="btn btn-primary btn-xs"><i class="fa fa-fw fa-edit"></i>修改</span>
                         <span class="btn btn-danger btn-xs"><i class="fa fa-fw fa- fa-close "></i>删除</span>
                     </td>
                 </tr>
+                {{/each}}
+                {{else }}
                 <tr>
-                    <td>2</td>
-                    <td><img height="50px" width="50px"
-                            src="https://shop.canon.com.cn/image/catalog/EOS RP/24-105111.jpg" alt=""></td>
-                    <td>OS RP 套机RF24-105mm F4 L IS USM</td>
-                    <td>相机</td>
-                    <td>17537</td>
-                    <td>10005</td>
-                    <td>
-                    <span class="btn btn-primary btn-xs"><i class="fa fa-fw fa-edit"></i>修改</span>
-                    <span class="btn btn-danger btn-xs"><i class="fa fa-fw fa- fa-close "></i>删除</span>
-                    </td>
+                   <td colspan="10">暂无数据...</td> 
                 </tr>
+                {{/if}}
+              
 
             </tbody>
         </table>

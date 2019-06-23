@@ -8,7 +8,7 @@ export default function() {
         dataType:'json',
         
         success:( result)=>{
-            return result.data
+            return result
         },
         error: (err)=>{
             return false 

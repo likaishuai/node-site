@@ -20,7 +20,7 @@ class Product{
             ...data,
             creatData:  nowTime.getFullYear +'年'+nowTime.getMonth+'月'+nowTime.getDay+'日'
         })
-         return product.save()
+         return product.save( data)
     }
     //查，查询全部信息
     findAll() {

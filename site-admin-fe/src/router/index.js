@@ -6,6 +6,7 @@ const router = new SmRouter('main-view')
 
 router.route('/',indexController.render)
 router.route('/product',productController.render)
+router.route('/product_add',productController.addProduct)
 
 router.route('*',(req,res,next)=>{
     res.redirect('/') //默认跳转的路由
