@@ -8,4 +8,5 @@ router.route('/')
     .all(isSign)
     .get(productController.findAll)
     .post(fileUpload.uploadFile, productController.save)
+    .delete(productController.delete)
 module.exports = router

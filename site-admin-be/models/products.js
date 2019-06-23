@@ -26,6 +26,10 @@ class Product{
     findAll() {
         return this.productModel.find({}).sort({_id: -1})
     }
+    //删，删除某一条信息
+    delete(_id){
+        return this.productModel.deleteOne(this.productModel.find({_id}))
+    }
 }
 
 const product = new Product()

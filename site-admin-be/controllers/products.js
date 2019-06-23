@@ -1,4 +1,5 @@
- const productModel = require('../models/products')
+const url = require('url')
+const productModel = require('../models/products')
 
  class ProductController {
     constructor(){}
@@ -40,6 +41,20 @@
 
     }
 
+    //删除某一条商品信息
+    async delete(req, res, next){
+        res.set("Content-type","application/json;charset=utf8")
+        // console.log(url.parse(req.url,true).query.id)
+        let id = url.parse(req.url,true).query.id
+        let result = await productModel.delete(id)
+        if(result){
+            res.render('succ',{
+                data:JSON.stringify({
+                   message: '该数据已删除！'
+                })
+            })
+        }
+    }
  }
 
  const productController = new ProductController()
