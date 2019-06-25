@@ -47,14 +47,21 @@ class FileUpload{
          }).single('productImg')
 
          upload(req, res, (err)=>{
-             if(err) {
-                 res.render('fail',{
-                     data: JSON.stringify(err.message)
-                 })
-             } else {
-                req.filename = fileName
-                next()
-             }
+             console.log(fileName)
+             if(fileName==''){
+                 next()
+                } else{                
+                    if(err) {
+                        res.render('fail',{
+                            data: JSON.stringify(err.message)
+                        })
+                    } else {
+                        console.log(req.body)
+                        req.filename = fileName
+                        next()
+                    }
+                }
+
          })
     }
 }

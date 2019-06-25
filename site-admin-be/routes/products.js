@@ -9,4 +9,7 @@ router.route('/')
     .get(productController.findAll)
     .post(fileUpload.uploadFile, productController.save)
     .delete(productController.delete)
+
+router.post('/updata', isSign,fileUpload.uploadFile, productController.updata)
+router.get('/getOne', isSign, productController.getOne)
 module.exports = router

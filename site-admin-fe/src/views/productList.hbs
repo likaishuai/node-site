@@ -4,7 +4,7 @@
         <span id="btn-add-product" class="btn pull-right btn-success btn-sm"><i class="fa fa-fw fa-plus-square"></i>添加</span>
     </div>
     <!-- /.box-header -->
-    <div class="box-body no-padding">
+    <div class="box-body no-padding" id="product-list-main">
         <table class="table table-striped">
             <tbody>
                 <tr>
@@ -18,7 +18,7 @@
                 </tr>
                  {{#if hasData}}
                  {{#each data}} 
-                <tr>
+                <tr  _dataId="{{_id}}">
                     <td>{{@index}}</td>
                     <td><img height="50px" width="50px"
                             src="http://localhost:3000/upload/{{productImg}}" alt=""></td>
@@ -27,8 +27,8 @@
                     <td>{{productPrice}}</td>
                     <td>{{productNumber}}</td>
                     <td>
-                        <span class="btn btn-primary btn-xs"><i class="fa fa-fw fa-edit"></i>修改</span>
-                        <span class="btn btn-danger btn-xs"><i class="fa fa-fw fa- fa-close "></i>删除</span>
+                        <span class="btn btn-primary btn-xs product-edit"><i class="fa fa-fw fa-edit"></i>修改</span>
+                        <span class="btn btn-danger btn-xs product-delete"><i class="fa fa-fw fa- fa-close "></i>删除</span>
                     </td>
                 </tr>
                 {{/each}}
