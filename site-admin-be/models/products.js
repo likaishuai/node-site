@@ -30,6 +30,14 @@ class Product{
     getOne(id){
         return this.productModel.find({_id:id})
     }
+    //查，查出数据数量
+    getCount(){
+        return this.productModel.count({})
+    }
+      //查，查询全部信息
+    getSome(page,pageSize) {        
+        return  this.productModel.find({}).sort({_id: -1}).skip( page * pageSize).limit(Number(pageSize))
+    }
     //删，删除某一条信息
     delete(_id){
         return this.productModel.deleteOne(this.productModel.find({_id}))

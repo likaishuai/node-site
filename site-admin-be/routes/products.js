@@ -6,10 +6,10 @@ const fileUpload = require('../middlewares/upload-file')
 const isSign = require('../middlewares/isSignMiddleware')
 router.route('/')
     .all(isSign)
-    .get(productController.findAll)
+    .get(productController.getSome)
     .post(fileUpload.uploadFile, productController.save)
     .delete(productController.delete)
 
 router.post('/updata', isSign,fileUpload.uploadFile, productController.updata)
-router.get('/getOne', isSign, productController.getOne)
+router.get('/getone', isSign, productController.getOne)
 module.exports = router

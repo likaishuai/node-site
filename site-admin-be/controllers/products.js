@@ -44,10 +44,35 @@ const productModel = require('../models/products')
     async getOne(req, res, next){
         res.set('Content-Type','application/json;charset=utf8')
         let result = await productModel.getOne(req.query.id)
-        console.log(result)
         if(result){
             res.render('succ',{
                 data: JSON.stringify(result)
+            })
+        } else{
+            res.render('fail',{
+                data: JSON.stringify({
+                    message:"查询错误"
+                })
+            })
+        }
+    }
+    //查找部分数据（分页）
+    async getSome(req, res, next){
+        res.set('Content-Type','application/json;charset=utf8')
+        // console.log(req.query)
+        let total = await productModel.getCount()
+        let { page=0, pageSize=3 } = req.query
+        let result = await productModel.getSome(page, pageSize)
+        console.log(result,total)
+
+        if(result){
+            res.render('succ',{
+                data: JSON.stringify({
+                        page: Number(page),
+                        pagesize: Number( pageSize),
+                        total,
+                        result
+                    }) 
             })
         } else{
             res.render('fail',{
