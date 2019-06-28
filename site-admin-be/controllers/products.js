@@ -56,20 +56,19 @@ const productModel = require('../models/products')
             })
         }
     }
-    //查找部分数据（分页）
+    //查找部分数据（分页,搜索）
     async getSome(req, res, next){
         res.set('Content-Type','application/json;charset=utf8')
-        // console.log(req.query)
         let total = await productModel.getCount()
-        let { page=0, pageSize=3 } = req.query
-        let result = await productModel.getSome(page, pageSize)
-        console.log(result,total)
+        let { page=0, pageSize=3, keyword='' } = req.query
 
+        let result = await productModel.getSome(page, pageSize, keyword)
         if(result){
             res.render('succ',{
                 data: JSON.stringify({
                         page: Number(page),
                         pagesize: Number( pageSize),
+                        keyword,
                         total,
                         result
                     }) 
@@ -85,14 +84,14 @@ const productModel = require('../models/products')
     //删除某一条商品信息
     async delete(req, res, next){
         res.set("Content-type","application/json;charset=utf8")
-        // console.log(url.parse(req.url,true).query.id)
         let id = url.parse(req.url,true).query._id
-        console.log(id)
+        let total = await productModel.getCount()
         let result = await productModel.delete(id)
         if(result){
             res.render('succ',{
                 data:JSON.stringify({
-                   message: '该数据已删除！'
+                   message: '该数据已删除！',
+                   total:  total
                 })
             })
         }
@@ -104,7 +103,6 @@ const productModel = require('../models/products')
         delete req.body.productImg
         req.body = req.filename ?  {...req.body, productImg: req.filename } : req.body
         let result = await productModel.updata(req.body.id, req.body)
-        // console.log(result)
         if(result){
             res.render('succ',{
                 data:JSON.stringify({

@@ -34,9 +34,10 @@ class Product{
     getCount(){
         return this.productModel.count({})
     }
-      //查，查询全部信息
-    getSome(page,pageSize) {        
-        return  this.productModel.find({}).sort({_id: -1}).skip( page * pageSize).limit(Number(pageSize))
+      //查，查询部分信息（分页、查询）
+    getSome(page, pageSize, keyword) {
+        let regexp  = new RegExp(keyword,"i")      
+        return  this.productModel.find({ productName: regexp }, null, {skip: page * pageSize}).sort({_id: -1}).limit(Number(pageSize))
     }
     //删，删除某一条信息
     delete(_id){

@@ -18,6 +18,7 @@ class Users {
 
     _renderUserTpl({ isSign, username}){
         //导航栏用户信息
+        console.log(isSign, username,"this is userTpl",this)
         let template = Handlebars.compile(userTpl)
         let renderedUserTpl = template({
             isSign,
@@ -26,12 +27,14 @@ class Users {
         $('#userSignPlace').html(renderedUserTpl)
         //侧边栏用户信息
         let templatePanel = Handlebars.compile(userPanelTel)
+        console.log(isSign,"userTpl")
         let renderPanelTel = templatePanel({
             isSign,
             username
         })
         $('#user-panel').html(renderPanelTel)
         users._user()
+        
     }
 
     //渲染user模板，绑定注册事件
@@ -84,7 +87,7 @@ class Users {
     _signinStatus(result, jqXHR){
         if ( result.ret){
             users._renderUserTpl({
-                isSign : true,
+                isSign : true,   
                 username: result.data.username
             })
             localStorage.setItem('token',jqXHR.getResponseHeader('X-Access-Token'))

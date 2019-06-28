@@ -1,7 +1,18 @@
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">商品管理</h3>
-        <span id="btn-add-product" class="btn pull-right btn-success btn-sm"><i class="fa fa-fw fa-plus-square"></i>添加</span>
+            <h3 class="box-title">商品管理</h3>
+    </div>
+    <div class="box-header">       
+        <span id="btn-add-product" class="btn pull-left btn-success btn-sm"><i class="fa fa-fw fa-plus-square"></i>添加</span>
+        <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button id="list-search" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
     </div>
     <!-- /.box-header -->
     <div class="box-body no-padding" id="product-list-main">
@@ -47,43 +58,43 @@
     <div class="box-footer clearfix">
         <ul class="pagination pagination-sm no-margin pull-right" id="pageNumber">
            
-            <li><a href="{{url+1}}?page=0&pageSize={{pageSize}}">-«</a></li>
-            <li><a href="{{url+1}}?page={{page>1?page-1:0}}&pageSize={{pageSize}}">«</a></li>
+            <li><a href="{{url+1}}?page=0&pageSize={{pageSize}}&keyword=&keyword={{keyword}}">-«</a></li>
+            <li><a href="{{url+1}}?page={{page>1?page-1:0}}&pageSize={{pageSize}}&keyword={{keyword}}">«</a></li>
             {{if pageNumber.length >= 6}}
                 {{if page+1==1}}
-                <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}">{{page+1}}</a></li>
-                <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}">{{page+2}}</a></li>
-                <li><a href="{{url}}?page={{page+2}}&pageSize={{pageSize}}">{{page+3}}</a></li>
+                <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+1}}</a></li>
+                <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+2}}</a></li>
+                <li><a href="{{url}}?page={{page+2}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+3}}</a></li>
                 <li><a href="javaScript:void(0)">···</a></li>
                     {{else if page+1==2}}
-                    <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}">{{page}}</a></li>
-                    <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}">{{page+1}}</a></li>
-                    <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}">{{page+2}}</a></li>
+                    <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page}}</a></li>
+                    <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+1}}</a></li>
+                    <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+2}}</a></li>
                     <li><a href="javaScript:void(0)">···</a></li>
                         {{else if page+1==pageNumber.length}}
                         <li><a href="javaScript:void(0)">···</a></li>
-                        <li><a href="{{url}}?page={{page-1-1}}&pageSize={{pageSize}}">{{page-1}}</a></li>
-                        <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}">{{page}}</a></li>
-                        <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}">{{page+1}}</a></li>
+                        <li><a href="{{url}}?page={{page-1-1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page-1}}</a></li>
+                        <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page}}</a></li>
+                        <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+1}}</a></li>
                             {{else if page+1==pageNumber.length-1}}
                             <li><a href="javaScript:void(0)">···</a></li>
-                            <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}">{{page}}</a></li>
-                            <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}">{{page+1}}</a></li>
-                            <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}">{{page+2}}</a></li>
+                            <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}&keyword=&keyword={{keyword}}">{{page}}</a></li>
+                            <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}&keyword=&keyword={{keyword}}">{{page+1}}</a></li>
+                            <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+2}}</a></li>
                                 {{else}}
                                 <li><a href="javaScript:void(0)">···</a></li>
-                                <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}">{{page}}</a></li>
-                                <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}">{{page+1}}</a></li>
-                                <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}">{{page+2}}</a></li>
+                                <li><a href="{{url}}?page={{page-1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page}}</a></li>
+                                <li><a href="{{url}}?page={{page}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+1}}</a></li>
+                                <li><a href="{{url}}?page={{page+1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{page+2}}</a></li>
                                 <li><a href="javaScript:void(0)">···</a></li>
                 {{/if}}
             {{else}}
                 {{each pageNumber}}
-            <li><a href="{{url}}?page={{$value-1}}&pageSize={{pageSize}}">{{$value}}</a></li>
+            <li><a href="{{url}}?page={{$value-1}}&pageSize={{pageSize}}&keyword={{keyword}}">{{$value}}</a></li>
                 {{/each}}
             {{/if}}
-            <li><a href="{{url+1}}?page={{page+1>pageNumber.length-1?page:page+1}}&pageSize={{pageSize}}">»</a></li>
-            <li ><a href="{{url+1}}?page={{pageNumber.length-1}}&pageSize={{pageSize}}">»-</a></li>
+            <li><a href="{{url+1}}?page={{page+1>pageNumber.length-1?page:page+1}}&pageSize={{pageSize}}&keyword={{keyword}}">»</a></li>
+            <li ><a href="{{url+1}}?page={{pageNumber.length-1}}&pageSize={{pageSize}}&keyword={{keyword}}">»-</a></li>
         </ul>
     </div>
     {{/if}}

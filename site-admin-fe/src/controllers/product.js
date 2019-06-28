@@ -16,7 +16,6 @@ import random from 'string-random'
 //                 "X-Access-Token": localStorage.getItem('token')
 //             },
 //             success(result){
-//                 // console.log( result)
 //                 res.render(productTpl({ 
 //                     data: result.data.result,
 //                     hasData: result.data.result.length > 0 
@@ -33,9 +32,9 @@ export const render = async (req,res,next)=>{
     let result = await oAuth()
     //健全登录检测
     if(result.data.isSign){
-        console.log(req.query)
         let page = req.query ? req.query.page: 0
         let pageSize = req.query ? req.query.pageSize : 3
+        let keyword = req.query ? req.query.keyword : ''
         $.ajax({
             url: 'api/products',
             headers:{
@@ -43,7 +42,8 @@ export const render = async (req,res,next)=>{
             },
             data:{
                 page,
-                pageSize 
+                pageSize,
+                keyword 
             },
             success(result){
                 let pageNumber = []
@@ -57,10 +57,9 @@ export const render = async (req,res,next)=>{
                     page: ~~page,
                     pageSize: ~~pageSize,
                     total: result.data.total,
+                    keyword,
                     pageNumber
                 })
-                console.log(result)
-                console.log(pageNumber)
                 res.render(listHtml)    
                 bindListEvent(req,res)           
              }
@@ -100,7 +99,6 @@ function bindListEvent(req,res){
     })
     //删除某一条数据
     $('#product-list-main').on('click',".product-delete",function(e){
-        // console.log($(e.target).closest('tr').attr('_dataId'))
         let conf = confirm("你确定要删除该数据？")
         if(!conf){
             return
@@ -115,7 +113,15 @@ function bindListEvent(req,res){
                 },
                 success:(result)=>{
                     alert(result.data.message)
-                    res.go('/product/'+ random())
+                    let page = req.query? ~~req.query.page : 0
+                    let pageSize = req.query? ~~req.query.pageSize : 3
+                    let keyword = req.query? req.query.keyword : ''
+                    let total = ~~result.data.total
+                    
+                    // 最后一页内容删除完毕以后，需要跳转到上一页
+                    page = (page * pageSize === total - 1) && (page > 0) ? page - 1 : page
+
+                    res.go('/product/'+ random() + `?page=${page}&pageSize=${pageSize}&keyword=${keyword}`)
                 }
             })
         }
@@ -126,18 +132,25 @@ function bindListEvent(req,res){
         let id = $(e.target).closest('tr').attr("_dataId")
         res.go('/product_edit?id='+ id)
     })
+
+    //搜索操作(接口完成 事件未完  改用路由操作)
+    // $('#list-search').on('click',function(e){
+    //     let keyword = $(e.target).closest('div').siblings().attr('value')
+    //     go()
+    // })
+
     //页码高亮事件
-    let url = location.hash.split('?')[0];             
-    let page = req.query? ~~req.query.page:0;
-    let pageSize = req.query? ~~req.query.pageSize : 3;
-    console.log( $(`a[href="${url}?page=${page}&pageSize=${pageSize}"]`))
-    $(`a[href="${url}?page=${page}&pageSize=${pageSize}"]`).closest('li').addClass("active").siblings().removeClass("active")
+    let url = location.hash.split('?')[0]             
+    let page = req.query? ~~req.query.page:0
+    let pageSize = req.query? ~~req.query.pageSize : 3
+    let keyword = req.query? req.query.keyword : ''
+    console.log($(`a[href="${url}?page=${page}&pageSize=${pageSize}&keyword=${keyword}"]`),keyword)
+    $(`a[href="${url}?page=${page}&pageSize=${pageSize}&keyword=${keyword?keyword:''}"]`).closest('li').addClass("active").siblings().removeClass("active")
 }
 
 //提交新添商品事件
 function bindSubmitEvent(req, res){
     $('#product-submit').off("click").on('click',function(e){
-        console.log($('#product-submit-from').serialize())
         $("#product-submit-from").ajaxSubmit({
             resetForm: true,
             url: '/api/products',
